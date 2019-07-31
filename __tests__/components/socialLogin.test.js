@@ -21,6 +21,10 @@ describe('Testing social login', () => {
     wrapper = shallow(<SocialLogin {...props} />);
   });
 
+  it('Should pass dispach', () => {
+    mapDispatchToProps(jest.fn()).onSocialLogin('ededed', 'facebook');
+  });
+
   it('should have social login component', () => {
     expect(wrapper).toMatchSnapshot();
   });

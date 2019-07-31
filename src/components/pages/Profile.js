@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { capitalize } from 'lodash';
-
+import { withErrorHandler } from 'tesla-error-handler';
 import Article from '../common/Article';
 import Interests from '../widgets/Interests';
 import FollowCard from '../common/FollowCard';
@@ -12,12 +12,10 @@ import {
 import Fab from '../widgets/Fab';
 // eslint-disable-next-line import/no-named-as-default
 import ProfileEditForm from '../forms/ProfileEditForm';
-
 import profilePlaceholder from '../../assets/images/profile_placeholder.jpg';
 import '../../assets/scss/pages/Profile.scss';
 import Spinner from '../widgets/Spinner';
 import axios from '../../utils/axios-ah';
-import withErrorHandler from '../hoc/errorHandler';
 
 export class Profile extends Component {
   constructor(props) {

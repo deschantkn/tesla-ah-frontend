@@ -1,3 +1,11 @@
 export const GET_ARTICLES = 'GET_ARTICLES';
 export const CREATE_ARTICLE = 'CREATE_ARTICLE';
 export const GET_ARTICLE = 'GET_ARTICLE';
+export const GET_ONE_ARTICLES = 'GET_ONE_ARTICLES';
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
+export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
+export const TYPE_ERROR = 'TYPE_ERROR';
+export const RESET_PROPS = 'RESET_PROPS';
+export const DELETE_ARTICLE = 'DELETE_ARTICLE';
+export const ARTICLE_ERRORS = 'ARTICLE_ERRORS';
+export const GET_MY_ARTICLES = 'GET_MY_ARTICLES';

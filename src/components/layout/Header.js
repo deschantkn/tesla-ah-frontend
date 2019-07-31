@@ -1,20 +1,17 @@
-/* eslint-disable max-len */
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import logo from '../../assets/img/logo_st.png';
 
-export class Header extends Component {
-  static propTypes = {
-    auth: PropTypes.instanceOf(Object).isRequired,
-  };
+class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: false,
+    };
+  }
 
   render() {
-    const {
-      auth: { loggedIn },
-    } = this.props;
+    const { loggedIn } = this.state;
     return (
       <header className="nav-to-shrink">
         <nav className="navbar navbar-expand-lg container">
@@ -26,7 +23,6 @@ export class Header extends Component {
               width: 50,
             }}
           />
-          {/* eslint-disable-nextline  */}
           <Link to="/" className="navbar-brand blue">
             Authors Haven
           </Link>
@@ -48,14 +44,13 @@ export class Header extends Component {
             {!loggedIn ? (
               <ul className="navbar-nav mr-auto nav-left">
                 <li className="nav-item active">
-                  {/* eslint-disable-nextline  */}
                   <Link className="nav-link is-active" to="/">
                     Home
+                    {' '}
                     <span className="sr-only">(current)</span>
                   </Link>
                 </li>
                 <li className="nav-item dropdown">
-                  {/* eslint-disable-nextline  */}
                   <Link
                     className="nav-link dropdown-toggle nav-shrink"
                     to="/"
@@ -71,32 +66,26 @@ export class Header extends Component {
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
                   >
-                    {/* eslint-disable-nextline  */}
                     <Link className="dropdown-item" to="/">
                       Technology
                     </Link>
-                    {/* eslint-disable-nextline  */}
                     <Link className="dropdown-item" to="/">
                       Sport
                     </Link>
-                    {/* eslint-disable-nextline  */}
                     <Link className="dropdown-item" to="/">
                       Design
                     </Link>
-                    {/* eslint-disable-nextline  */}
                     <Link className="dropdown-item" to="/">
                       Politics
                     </Link>
                   </div>
                 </li>
                 <li className="nav-item">
-                  {/* eslint-disable-nextline  */}
                   <Link className="nav-link nav-shrink" to="/">
                     About Us
                   </Link>
                 </li>
                 <li className="nav-item">
-                  {/* eslint-disable-nextline  */}
                   <Link className="nav-link nav-shrink" to="/" tabIndex="-1">
                     Contacts
                   </Link>
@@ -116,23 +105,23 @@ export class Header extends Component {
             )}
             {loggedIn ? (
               <ul className="nav-right navbar-nav">
-                <li id="nav-item noti-container">
-                  <div id="noti-counter">5</div>
+                <li id="nav-item noti_Container">
+                  <div id="noti_Counter">5</div>
                   <i
-                    id="noti-button"
+                    id="noti_Button"
                     className="nav-link is-active nav-shrink fa fa-bell"
                   />
                 </li>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <li id="nav-item noti-container message">
-                  <div id="noti-counter">2</div>
+                <li id="nav-item noti_Container message">
+                  <div id="noti_Counter">2</div>
                   <i
-                    id="noti-button"
+                    id="noti_Button"
                     className="nav-link is-active nav-shrink fa fa-envelope"
                   />
                 </li>
                 &nbsp;&nbsp;&nbsp;
-                <li id="nav-item noti-container message">
+                <li id="nav-item noti_Container message">
                   <img
                     className="menu-profile-image"
                     src="https://scontent.fkgl1-1.fna.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=103&_nc_oc=AQm1z5jCqvLA7cItJnm3RXa2_ApxETs_BsK1Y5lNksTqg0YsrGmwP91yr73V3BLnYOw&_nc_ht=scontent.fkgl1-1.fna&oh=e18554da0038703db68054626fa73da9&oe=5DE21BE9"
@@ -161,8 +150,4 @@ export class Header extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps)(Header);
+export default Header;

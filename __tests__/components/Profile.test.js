@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 import React from 'react';
 import { mount } from 'enzyme';

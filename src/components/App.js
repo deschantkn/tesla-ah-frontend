@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Terms from './pages/Terms';
+import Create from './pages/Createarticle';
 import VerifyAccount from './pages/VerifyAccount';
 import Footer from './layouts/Footer';
 import ReadArticle from './pages/ReadArticle';
@@ -19,6 +20,8 @@ import ResetPasswordRequest from './pages/ResetPasswordEmail';
 import ApplyPassword from './pages/ApplyPasswordForm';
 import Profile from './pages/Profile';
 import PageNotFound from './pages/PageNotFound';
+import Editarticle from './pages/Editarticle';
+import MyArticles from './pages/MyArticles';
 
 const App = () => (
   <BrowserRouter>
@@ -31,11 +34,13 @@ const App = () => (
       <Route exact path="/terms" component={Terms} />
       <Route exact path="/verify/:token" component={VerifyAccount} />
       <Route exact path="/articles/:slug" component={ReadArticle} />
-      <Route exact path="/" component={Home} />
       <Route exact path="/verify/:token" component={VerifyAccount} />
       <Route exact path="/resetPassword/:token" component={ApplyPassword} />
       <Route exact path="/resetPasswordRequest" component={ResetPasswordRequest} />
       <Route exact path="/profile/:username" component={Profile} />
+      <Route exact path="/articles" component={MyArticles} />
+      <Route exact path="/article/new" component={Create} />
+      <Route exact path="/article/edit/:slug" component={Editarticle} />
       <Route component={PageNotFound} />
     </Switch>
     <Footer />

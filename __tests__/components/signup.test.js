@@ -34,6 +34,9 @@ describe('Signup Components tests...', () => {
     expect(signup.state()).toBeDefined();
     mapStateToProps({});
   });
+  it('Should test validation', () => {
+    mapStateToProps({ ui: {}, auth: {} });
+  });
   describe('Input simulations tests...', () => {
     it('Should change DOB state', () => {
       const dob = signup.find('input[name="birthDate"]');
