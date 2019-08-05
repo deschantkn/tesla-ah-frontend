@@ -4,11 +4,18 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import logo from '../../assets/img/logo_st.png';
+import { setLoggedIn } from '../../redux/actions/ui.actions';
 
 export class Header extends Component {
   static propTypes = {
     auth: PropTypes.instanceOf(Object).isRequired,
-  };
+    setLoggedIn: PropTypes.func.isRequired,
+  }
+
+  componentWillMount() {
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.setLoggedIn();
+  }
 
   render() {
     const {
@@ -164,4 +171,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { setLoggedIn })(Header);

@@ -18,7 +18,7 @@ export const createAccount = userInfo => async (dispatch) => {
     );
     dispatch(setLoaded());
     // eslint-disable-next-line no-undef
-    localStorage.setItem('ACCESS_TOKEN', data.data.token);
+    sessionStorage.setItem('token', data.data.token);
     toast.success('You are now registered to AH, check your email to verify your account');
     dispatch({
       type: SIGNUP_SUCCESS,
