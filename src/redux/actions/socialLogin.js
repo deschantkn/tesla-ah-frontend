@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import socialLoginTesla from '../../utils/socialLoginTesla';
-import { SUBMIT_LOGIN, ERROR_LOGIN } from './actionTypes.js/login';
-import { SIGNUP_SUCCESS } from './actionTypes.js/signup';
+import { SUBMIT_LOGIN, ERROR_LOGIN, SIGNUP_SUCCESS } from './types/auth.type';
 
 /**
  * @returns {*} dispatch

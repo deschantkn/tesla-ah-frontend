@@ -2,11 +2,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import Spinner from '../widgets/Spinner';
 import { login } from '../../redux/actions/users/login.actions';
-import validate from '../../utils/validations';
 import TextInput from '../common/TextInput';
 import Social from './SocialLogin';
 
@@ -34,15 +32,8 @@ export class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const formErrors = validate(this.state, 'login');
-    if (Object.values(formErrors).length) {
-      Object.values(formErrors).forEach((err) => {
-        toast.error(err);
-      });
-    } else {
-      const { email, password } = this.state;
-      this.props.login(email, password);
-    }
+    const { email, password } = this.state;
+    this.props.login(email, password);
   };
 
   render() {

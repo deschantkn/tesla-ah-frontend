@@ -28,7 +28,6 @@ const Login = (state = initialState, { type, payload }) => {
       return {
         ...state,
         ...payload,
-        loggedIn: true,
         isAuthenticated: true,
       };
     default:
