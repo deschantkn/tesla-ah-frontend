@@ -5,8 +5,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-script-url */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { socialLogin } from '../../redux/actions/socialLogin';
 
 /**
  * @param {*} props
@@ -47,7 +45,7 @@ export class SocialLogin extends Component {
           onClick={this.callTwitterLogin}
         >
           <i className="icon fa fa-twitter" />
-                Twitter
+          Twitter
         </a>
         <a
           className="social button--social-login button--googleplus"
@@ -55,21 +53,11 @@ export class SocialLogin extends Component {
           onClick={this.callGoogleLogin}
         >
           <i className="icon fa fa-google-plus" />
-                Google +
+          Google +
         </a>
       </React.Fragment>
     );
   }
 }
 
-/**
- * @param {*} dispatch
- * @returns {object} props
- */
-export const mapDispatchToProps = dispatch => ({
-  onSocialLogin: (accessToken, provider) => dispatch(socialLogin(accessToken, provider)),
-});
-export default connect(
-  null,
-  mapDispatchToProps,
-)(SocialLogin);
+export default SocialLogin;

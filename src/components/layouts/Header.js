@@ -103,18 +103,16 @@ export class Header extends Component {
               </ul>
             ) : (
               <ul className="navbar-nav mr-auto nav-left">
-                <li className="nav-item nav-right">
-                  <input
-                    className="search-field form-control"
-                    type="text"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </li>
+                <li className="nav-item nav-right" />
               </ul>
             )}
             {loggedIn ? (
               <ul className="nav-right navbar-nav">
+                <li className="nav-item">
+                  <Link to="/search" className="nav-link search__link--icon">
+                    <i className="fa fa-search" />
+                  </Link>
+                </li>
                 <li id="nav-item noti-container">
                   <div id="noti-counter">5</div>
                   <i
@@ -141,6 +139,11 @@ export class Header extends Component {
               </ul>
             ) : (
               <ul className="nav-right navbar-nav">
+                <li className="nav-item">
+                  <Link to="/search" className="nav-link search__link--icon-sm">
+                    <i className="fa fa-search" />
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link to="/auth/login" className="nav-link is-active">
                     Login
