@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-undef */
 import React from 'react';
@@ -7,7 +8,9 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import Home from '../../../src/components/pages/Home';
 import { findByTestAtrr, testStore } from '../../../src/redux/store/index';
-import { getArticles, getArticle } from '../../../src/redux/actions/article.actions';
+import {
+  getArticles, getArticle,
+} from '../../../src/redux/actions/article.actions';
 import { getUserProfile } from '../../../src/redux/actions/author/authoruser.action';
 import { article } from '../../../__mocks__/data';
 import getArticleReducer from '../../../src/redux/reducers/articles.reducer';
@@ -52,6 +55,35 @@ describe('Should get articles', () => {
       expect(store.getActions().length).toEqual(1);
     });
   });
+  //
+  // test('should get bookmarks', async () => {
+  //   moxios.wait(() => {
+  //     const request = moxios.requests.mostRecent();
+  //     request.respondWith({
+  //       status: 200,
+  //       response: {
+  //         data: { Bookmark: [], count: 1 },
+  //       },
+  //     });
+  //   });
+  //   return store.dispatch(getBoomarks(1)).then(() => {
+  //     expect(store.getActions().length).toEqual(1);
+  //   });
+  // });
+  // test('should create bookmark', async () => {
+  //   moxios.wait(() => {
+  //     const request = moxios.requests.mostRecent();
+  //     request.respondWith({
+  //       status: 200,
+  //       response: {
+  //         data: { bookmark: {}, count: 1 },
+  //       },
+  //     });
+  //   });
+  //   return store.dispatch(bookmark(1)).then(() => {
+  //     expect(store.getActions().length).toEqual(1);
+  //   });
+  // });
 });
 describe('Should get article', () => {
   beforeEach(() => {
@@ -132,6 +164,10 @@ describe('Reducer test', () => {
   const initialState3 = {
     authorprofile: {},
   };
+  // const initialState5 = {
+  //   Bookmarks: [],
+  //   bookmark: {},
+  // };
   it('Should return an object', () => {
     const articles = getArticleReducer(initialState1, {
       type: GET_ARTICLES,
@@ -153,6 +189,20 @@ describe('Reducer test', () => {
     });
     expect(typeof articles).toBe('object');
   });
+  // it('should return an object', () => {
+  //   const getbookmarks = getArticleReducer(initialState5, {
+  //     type: GET_BOOKMARK,
+  //     payload: bookmarkk[0],
+  //   });
+  //   expect(typeof getbookmarks).toBe('object');
+  // });
+  // it('should return an object', () => {
+  //   const bookmarkArticle = getArticleReducer(initialState5, {
+  //     type: BOOKMARK,
+  //     payload: bookmarkk[0],
+  //   });
+  //   expect(typeof bookmarkArticle).toBe('object');
+  // });
   it('Should return an object', () => {
     const ui = getUiReducer(initialState2, { type: IS_LOADED, payload: {} });
     expect(typeof ui).toBe('object');

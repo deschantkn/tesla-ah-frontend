@@ -1,3 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
@@ -5,7 +12,9 @@ import { connect } from 'react-redux';
 import DisplayContent from 'Dante2';
 import Rater from 'react-rater';
 import Moment from 'react-moment';
-import { getArticle } from '../../redux/actions/article.actions';
+import {
+  getArticle, getBoomarks, bookmark,
+} from '../../redux/actions/article.actions';
 import { getUserProfile } from '../../redux/actions/author/authoruser.action';
 import { DEFAULT_AVATA } from '../../utils/constants';
 import Preloader from '../widgets/Preloader';
@@ -14,27 +23,66 @@ class ReadArticle extends Component {
   state = {
     Article: {},
     Author: {},
+    AllBoomarked: {},
+    userId: {},
+    isBookmarked: false,
+    isProfileRequested: false,
   };
 
   componentWillMount() {
     const { slug } = this.props.match.params;
     this.props.getArticle(slug);
+    this.props.getBoomarks(slug);
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.Article) {
       this.setState({ Article: newProps.Article });
-      this.props.getUserProfile(newProps.Article.article.author.username);
+      if (!this.state.isProfileRequested) {
+        this.props.getUserProfile(newProps.Article.article.author.username);
+        this.setState({ isProfileRequested: true });
+      }
     }
     if (newProps.Author) {
       this.setState({ Author: newProps.Author });
     }
+    // if (newProps.myBookmarks.length > 0) {
+
+    // }
+  }
+
+  handleClick = () => {
+    this.setState({
+      // eslint-disable-next-line react/no-access-state-in-setstate
+      isBookmarked: !this.state.isBookmarked,
+    });
+    const {
+      match: { params: { slug } },
+      bookmark: bookmarkArticle,
+    } = this.props;
+    bookmarkArticle(slug);
+    this.props.getBoomarks(slug);
+  };
+
+  isThisSlugBookmarked = (slug, bookmarks) => {
+    const data = bookmarks.find(item => item.slug === slug);
+    if (data) {
+      return true;
+    }
+    return false;
   }
 
   render() {
-    const { Article, Author } = this.state;
+    const {
+      Article, Author,
+    } = this.state;
     let contentBlocks = [];
+    const { slug } = this.props.match.params;
+    const Bookmarks = this.props.myBookmarks;
     if (Article && Author.profile) {
+      console.log(this.isThisSlugBookmarked(slug, Bookmarks), Bookmarks);
+      const BookmarkButton = this.isThisSlugBookmarked(slug, Bookmarks) || this.state.isBookmarked ? 'fas fa-bookmark' : 'far fa-bookmark';
+      console.log(this.isThisSlugBookmarked(slug, Bookmarks), this.state.isBookmarked);
       const content = JSON.parse(Article.article.body);
       const { blocks } = content.article.body;
       contentBlocks = blocks.splice(1, blocks.length);
@@ -83,8 +131,8 @@ class ReadArticle extends Component {
                   <div className="flauting-buttons mt-3 email">
                     <i className="fas fa-envelope-open" />
                   </div>
-                  <div className="flauting-buttons mt-3 bookmark">
-                    <i className="far fa-bookmark" />
+                  <div className="flauting-buttons mt-3 bookmark" onClick={this.handleClick}>
+                    <i className={BookmarkButton} />
                   </div>
                   <div className="flauting-buttons mt-3">
                     <i className="fas fa-thumbs-up" />
@@ -110,9 +158,13 @@ class ReadArticle extends Component {
 const mapStateToProps = state => ({
   Article: state.article.article,
   Author: state.author.authorprofile,
+  myBookmarks: state.article.Boomarks,
+  bookmark: state.article.bookmark,
 });
 
 export default connect(
   mapStateToProps,
-  { getArticle, getUserProfile },
+  {
+    getArticle, getUserProfile, getBoomarks, bookmark,
+  },
 )(ReadArticle);
