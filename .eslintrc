@@ -2,9 +2,17 @@
   "env": {
     "browser": true,
     "jest": true,
-    "node": false
+    "node": false,
+    "es6": true,
   },
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "extends": [
     "airbnb"
   ],
@@ -18,10 +26,11 @@
         ]
       }
     ],
-    "import/no-named-as-default": 0,
+    "import/no-named-as-default": "off",
     "jsx-a11y/anchor-is-valid": "off",
-    "react/prop-types": [
-      0
-    ]
-  }
+    "react/prop-types": "warn",
+    "no-debugger": "off",
+    "no-undef": "warn"
+  },
+  "root": true
 }

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import { GET_ARTICLES, GET_ARTICLE } from './types/article.type';
+import { GET_ARTICLES, GET_ONE_ARTICLE } from './types/article.type';
 import { BACKEND_URL } from '../../utils/constants';
 
 export const getArticles = page => async (dispatch) => {
@@ -13,7 +13,7 @@ export const getArticles = page => async (dispatch) => {
 export const getArticle = slug => async (dispatch) => {
   const { data } = await axios.get(`${BACKEND_URL}/api/articles/${slug}`);
   dispatch({
-    type: GET_ARTICLE,
+    type: GET_ONE_ARTICLE,
     payload: data,
   });
 };

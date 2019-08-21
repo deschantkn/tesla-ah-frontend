@@ -16,7 +16,7 @@ import { LOGIN_PENDING, LOGIN_SUCCESS, LOGIN_ERROR } from '../../../src/redux/ac
 import {
   GET_ARTICLES,
   CREATE_ARTICLE,
-  GET_ARTICLE,
+  GET_ONE_ARTICLE,
 } from '../../../src/redux/actions/types/article.type';
 import {
   IS_LOADING,
@@ -148,7 +148,7 @@ describe('Reducer test', () => {
   });
   it('Should return an object', () => {
     const articles = getArticleReducer(initialState1, {
-      type: GET_ARTICLE,
+      type: GET_ONE_ARTICLE,
       payload: article[0],
     });
     expect(typeof articles).toBe('object');

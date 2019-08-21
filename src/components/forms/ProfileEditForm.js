@@ -12,8 +12,6 @@ import {
   setUpdatable,
 } from '../../redux/actions/profile.actions';
 
-import '../../assets/scss/components/ProfileEditForm.scss';
-
 export class ProfileEditForm extends Component {
   constructor(props) {
     super(props);
@@ -248,56 +246,58 @@ export class ProfileEditForm extends Component {
     }
 
     return (
-      <div
-        className="modal fade"
-        id="exampleModalCenter"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
+      <div className="edit-profile--container">
         <div
-          className="modal-dialog modal-lg modal-dialog-centered"
-          role="document"
+          className="modal fade"
+          id="exampleModalCenter"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true"
         >
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalCenterTitle">
-                Edit your profile
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <form onSubmit={this.updateHandler}>
-                <div className="d-flex flex-column">
-                  {form}
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    disabled={!formIsValid}
-                  >
-                    {profile.updating ? <i className="fas fa-spinner fa-2x fa-spin" /> : 'Submit'}
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                ref={this.dismissModal}
-                id="submitProfile"
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
+          <div
+            className="modal-dialog modal-lg modal-dialog-centered"
+            role="document"
+          >
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalCenterTitle">
+                  Edit your profile
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <form onSubmit={this.updateHandler}>
+                  <div className="d-flex flex-column">
+                    {form}
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={!formIsValid}
+                    >
+                      {profile.updating ? <i className="fas fa-spinner fa-2x fa-spin" /> : 'Submit'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button
+                  ref={this.dismissModal}
+                  id="submitProfile"
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

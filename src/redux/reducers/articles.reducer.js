@@ -1,5 +1,5 @@
 // Articles reducers
-import { GET_ARTICLES, CREATE_ARTICLE, GET_ARTICLE } from '../actions/types/article.type';
+import { GET_ARTICLES, CREATE_ARTICLE, GET_ONE_ARTICLE } from '../actions/types/article.type';
 
 const initialState = {
   articles: [],
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
         ...state,
         articles: payload,
       };
-    case GET_ARTICLE:
+    case GET_ONE_ARTICLE:
       return {
         ...state,
         article: payload,
